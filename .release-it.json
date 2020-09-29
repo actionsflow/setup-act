@@ -9,7 +9,7 @@
   "github": {
     "release": true
   },
-  "npm": { "publish": false },
+  "npm": { "publish": true },
   "plugins": {
     "@release-it/conventional-changelog": {
       "preset": "angular",
