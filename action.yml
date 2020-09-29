@@ -1,0 +1,14 @@
+name: 'Setup act'
+description: 'GitHub Actions for act ⚡️ Setup act.'
+author: 'Owen Young'
+inputs:
+  version:
+    description: 'The act version to download (if necessary) and use. Example: latest, 0.2.14'
+    required: false
+    default: 'latest'
+runs:
+  using: 'node12'
+  main: 'lib/index.js'
+branding:
+  icon: 'package'
+  color: 'yellow'

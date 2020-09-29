@@ -1,0 +1,84 @@
+{
+  "name": "setup-act",
+  "version": "1.1.1",
+  "description": "GitHub Actions for act",
+  "main": "dist/main.js",
+  "engines": {
+    "node": ">=12.14.1",
+    "npm": ">=6.13.7"
+  },
+  "scripts": {
+    "all": "npm run format:check && npm run lint && npm test",
+    "lint": "eslint ./{src,__tests__}/**/*.ts",
+    "lint:fix": "eslint --fix ./{src,__tests__}/**/*.ts",
+    "test": "jest --coverage --verbose",
+    "build": "ncc build ./src/index.ts -o lib",
+    "build:npm": "tsc -p tsconfig-tsc.json",
+    "tsc": "tsc",
+    "format": "prettier --write **/*.ts",
+    "format:check": "prettier --check **/*.ts",
+    "release": "npm run build && git add lib/index.js && git commit -m \"chore: add build\" && standard-version",
+    "update-deps": "(git diff 'HEAD@{1}' --name-only | grep 'package-lock.json' > /dev/null) && npm ci || :"
+  },
+  "husky": {
+    "skipCI": true,
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "post-merge": "npm run update-deps; git remote prune origin"
+    }
+  },
+  "lint-staged": {
+    "{src,__tests__}/**/*.ts": [
+      "prettier --check",
+      "eslint"
+    ],
+    "README.md": [
+      "npx doctoc@1.4.0 --github"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/actionsflow/setup-act.git"
+  },
+  "keywords": [
+    "GitHub",
+    "Actions",
+    "JavaScript",
+    "TypeScript",
+    "act",
+    "Setup"
+  ],
+  "author": "actionsflow",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/actionsflow/setup-act/issues"
+  },
+  "homepage": "https://github.com/actionsflow/setup-act#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/exec": "^1.0.4",
+    "@actions/io": "^1.0.2",
+    "@actions/tool-cache": "^1.6.0",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.14",
+    "@types/node": "^12.12.62",
+    "@types/node-fetch": "^2.5.7",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
+    "@vercel/ncc": "^0.24.1",
+    "eslint": "^6.8.0",
+    "eslint-plugin-jest": "^23.20.0",
+    "husky": "^4.3.0",
+    "jest": "^25.5.4",
+    "jest-circus": "^26.4.2",
+    "lint-staged": "^10.4.0",
+    "nock": "^13.0.4",
+    "prettier": "2.1.2",
+    "release-it": "^14.0.3",
+    "standard-version": "^9.0.0",
+    "ts-jest": "^25.5.1",
+    "typescript": "^3.9.7"
+  }
+}

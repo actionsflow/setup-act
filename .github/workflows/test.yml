@@ -1,0 +1,53 @@
+name: 'Test'
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - 'ubuntu-20.04'
+          - 'ubuntu-18.04'
+          - 'ubuntu-16.04'
+          - 'macos-latest'
+          - 'windows-latest'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.1
+        with:
+          node-version: '12.18.3'
+      - run: npm ci
+      - name: Run prettier
+        if: startsWith(matrix.os, 'ubuntu-18.04')
+        run: npm run format:check
+
+      - name: Run eslint
+        if: startsWith(matrix.os, 'ubuntu-18.04')
+        run: npm run lint
+
+      - name: Run ncc
+        if: startsWith(matrix.os, 'ubuntu-18.04')
+        run: npm run build
+
+      - run: npm test
+
+      - name: Upload test coverage as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-${{ matrix.os }}
+          path: coverage
+
+      - uses: codecov/codecov-action@v1.0.13
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

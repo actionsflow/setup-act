@@ -1,0 +1,11 @@
+lib
+src
+__tests__
+coverage
+.github
+.DS_Store
+coverage
+.npm
+.eslintcache
+.env
+node_modules
