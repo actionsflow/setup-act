@@ -12,12 +12,12 @@
     "lint": "eslint ./{src,__tests__}/**/*.ts",
     "lint:fix": "eslint --fix ./{src,__tests__}/**/*.ts",
     "test": "jest --coverage --verbose",
-    "build": "ncc build ./src/index.ts -o lib",
+    "build": "ncc build ./src/index.ts -o lib -m",
     "build:npm": "tsc -p tsconfig-tsc.json",
     "tsc": "tsc",
     "format": "prettier --write **/*.ts",
     "format:check": "prettier --check **/*.ts",
-    "release": "npm run build && git add lib/index.js && git commit -m \"chore: add build\" && standard-version",
+    "release": "npm run build && git add lib/index.js && git commit -m \"chore: add build\" && release-it",
     "update-deps": "(git diff 'HEAD@{1}' --name-only | grep 'package-lock.json' > /dev/null) && npm ci || :"
   },
   "husky": {
@@ -77,7 +77,6 @@
     "nock": "^13.0.4",
     "prettier": "2.1.2",
     "release-it": "^14.0.3",
-    "standard-version": "^9.0.0",
     "ts-jest": "^25.5.1",
     "typescript": "^3.9.7"
   }
