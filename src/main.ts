@@ -63,7 +63,7 @@ export async function run(options?: RunOptions): Promise<ActionResult> {
   if (!isActRcExist) {
     // temp create
     // fix https://github.com/actionsflow/setup-act-for-actionsflow/issues/1
-    const actRC = `-P ubuntu-latest=node:12.6-buster-slim\n-P ubuntu-12.04=node:12.6-buster-slim\n-P ubuntu-18.04=node:12.6-buster-slim\n-P ubuntu-16.04=node:12.6-stretch-slim`;
+    const actRC = `-P ubuntu-latest=node:12.6-buster-slim\n-P ubuntu-20.04=node:12.6-buster-slim\n-P ubuntu-18.04=node:12.6-buster-slim\n-P ubuntu-16.04=node:12.6-stretch-slim`;
     await fs.writeFile(actRcPath, actRC);
   }
 
