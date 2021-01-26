@@ -14,11 +14,11 @@
     "test": "jest --coverage --verbose",
     "build": "ncc build ./src/index.ts -o lib -m",
     "build:npm": "tsc -p tsconfig-tsc.json",
-    "tsc": "tsc",
+    "tsc": "tsc -p tsconfig-tsc.json",
     "start": "yarn tsc -w",
     "format": "prettier --write **/*.ts",
     "format:check": "prettier --check **/*.ts",
-    "release": "npm run build && git add lib/index.js && (git diff-index --quiet HEAD || git commit -m \"chore: add build\") && release-it",
+    "release": "npm run build && npm run build:npm && git add lib/index.js && (git diff-index --quiet HEAD || git commit -m \"chore: add build\") && release-it",
     "update-deps": "(git diff 'HEAD@{1}' --name-only | grep 'package-lock.json' > /dev/null) && npm ci || :"
   },
   "husky": {
