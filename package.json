@@ -1,6 +1,6 @@
 {
   "name": "setup-act",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "GitHub Actions for act",
   "main": "dist/main.js",
   "engines": {
