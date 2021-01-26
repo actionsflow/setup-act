@@ -29,6 +29,16 @@ describe('Integration testing run()', () => {
     expect(result.exitcode).toBe(0);
     expect(result.output).toMatch(`act version ${testVersion}`);
   });
+  test('succeed in installing a 0.2.19 version', async () => {
+    const testVersion = Tool.TestVersionSepc19;
+    const result: main.ActionResult = await main.run({
+      version: testVersion
+    });
+    console.log('result', result);
+
+    expect(result.exitcode).toBe(0);
+    expect(result.output).toMatch(`act version ${testVersion}`);
+  });
 
   test('succeed in installing the latest version', async () => {
     const testVersion = 'latest';

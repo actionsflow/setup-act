@@ -5,3 +5,4 @@ coverage
 .env
 node_modules
 dist
+lib

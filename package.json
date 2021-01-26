@@ -15,6 +15,7 @@
     "build": "ncc build ./src/index.ts -o lib -m",
     "build:npm": "tsc -p tsconfig-tsc.json",
     "tsc": "tsc",
+    "start":"yarn tsc -w",
     "format": "prettier --write **/*.ts",
     "format:check": "prettier --check **/*.ts",
     "release": "npm run build && git add lib/index.js && (git diff-index --quiet HEAD || git commit -m \"chore: add build\") && release-it",
