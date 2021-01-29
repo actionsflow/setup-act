@@ -59,7 +59,9 @@ export async function run(options?: RunOptions): Promise<ActionResult> {
   await installer(installVersion);
   // temp write actrc if not exist
   const actRcPath = path.resolve(os.homedir(), '.actrc');
+  console.log('actRcPath', actRcPath);
   const isActRcExist = fsPure.existsSync(actRcPath);
+  console.log('isActRcExist', isActRcExist);
   if (!isActRcExist) {
     // temp create
     // fix https://github.com/actionsflow/setup-act-for-actionsflow/issues/1
