@@ -58,7 +58,8 @@ export async function run(options?: RunOptions): Promise<ActionResult> {
   core.info(`${Tool.Name} version: ${installVersion}`);
   await installer(installVersion);
   // temp write actrc if not exist
-  const actRcPath = path.resolve(os.homedir(), '.actrc');
+  // const actRcPath = path.resolve(os.homedir(), '.actrc');
+  const actRcPath = '.actrc';
   console.log('actRcPath', actRcPath);
   const isActRcExist = fsPure.existsSync(actRcPath);
   console.log('isActRcExist', isActRcExist);
