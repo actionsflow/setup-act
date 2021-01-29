@@ -26,10 +26,3 @@ jobs:
         uses: actionsflow/setup-act@v1
         with:
           version: ${{ matrix.version }}
-
-      - name: Run act version
-        run: echo "::set-output name=act_version::$(act version)"
-        id: act_version
-
-      - name: '${{ steps.act_version.outputs.act_version }}'
-        run: echo '${{ steps.act_version.outputs.act_version }}'
